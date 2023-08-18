@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #define MAX 1000
 #define TRUE 1
-#define FALSE 0
+#define FALSE 0  
 
 void carrega_vetor_ordenado(int colecao[], int valor_inicial, int tamanho);
 void carrega_vetor_inverso(int colecao[], int valor_inicial, int tamanho);
