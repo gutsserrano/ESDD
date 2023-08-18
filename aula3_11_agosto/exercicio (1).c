@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-#define MAX 10000
+#define MAX 1000
 #define TRUE 1
 #define FALSE 0
 
@@ -24,8 +24,8 @@ void chama_quick(int colecao[]);
 int main(/*int argc, char const *argv[]*/){
     int vetor[MAX];
 
-    //carrega_vetor_aleatorio(vetor, MAX, 3);
-	carrega_vetor_ordenado(vetor, 0, MAX);
+    carrega_vetor_aleatorio(vetor, MAX, 3);
+	//carrega_vetor_ordenado(vetor, 0, MAX);
 	//carrega_vetor_inverso(vetor, MAX, MAX);
 	//imprime_vetor(vetor, MAX);
 
@@ -120,11 +120,11 @@ void bubble_sort(int colecao[], int tamanho){
 
     //imprime_vetor(copia, MAX);
 
-    printf("\n**Bubble Sort**\n");
+    printf("\n**Bubble Sort**");
 
     printf("\nComparacoes: %ld", compara);
     printf("\nTrocas: %ld", troca);
-    printf("\nTempo: %f segundos\n", time_spent);
+    printf("\nTempo: %f segundos\n\n", time_spent);
 }
 
 void selection_sort(int colecao[], int tamanho){
@@ -153,10 +153,10 @@ void selection_sort(int colecao[], int tamanho){
 
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
 
-    printf("\n**Selection Sort**\n");
+    printf("\n**Selection Sort**");
     printf("\nComparacoes: %ld", compara);
     printf("\nTrocas: %ld", troca);
-    printf("\nTempo: %f segundos\n", time_spent);
+    printf("\nTempo: %f segundos\n\n", time_spent);
 
 }
 
@@ -173,20 +173,20 @@ void insert_sort(int colecao[], int tamanho){
 		elemento_auxiliar = copia[i];
 		
 		for(j = i-1; j >= 0 && copia[j] > elemento_auxiliar; j--){
-			compara++;
+			troca++;
 			copia[j+1] = copia[j];
 		}
 		copia[j+1] = elemento_auxiliar;
-		troca++;
+		compara++;
 	}
 	clock_t end = clock();
 
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
 
-	printf("\n**Insert Sort**\n");
+	printf("\n**Insert Sort**");
     printf("\nComparacoes: %ld", compara);
     printf("\nTrocas: %ld", troca);
-    printf("\nTempo: %f segundos\n", time_spent);
+    printf("\nTempo: %f segundos\n\n", time_spent);
 }
 
 void chama_merge(int colecao[]){
@@ -200,10 +200,10 @@ void chama_merge(int colecao[]){
 	clock_t end = clock();
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
 
-	printf("\n**Merge Sort**\n");
+	printf("\n**Merge Sort**");
     printf("\nComparacoes: %d", compara);
     printf("\nTrocas: %d", troca);
-    printf("\nTempo: %f segundos\n", time_spent);
+    printf("\nTempo: %f segundos\n\n", time_spent);
 	
 }
 
@@ -289,7 +289,7 @@ void partition(int x[], int lb, int ub, int *j){
     x[up] = a;
     *j = up;
 }
-
+	
 void chama_quick(int colecao[]){
 	int copia[MAX];
 	copia_vetor(colecao, copia);
@@ -300,10 +300,10 @@ void chama_quick(int colecao[]){
 	clock_t end = clock();
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
 
-	printf("\n**Quick Sort**\n");
+	printf("\n**Quick Sort**");
     //printf("\nComparacoes: %d", compara);
     //printf("\nTrocas: %d", troca);
-    printf("\nTempo: %f segundos\n", time_spent);
+    printf("\nTempo: %f segundos\n\n", time_spent);
 
 
 }
