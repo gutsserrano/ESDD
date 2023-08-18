@@ -14,10 +14,10 @@ void selection_sort(int[], int);
 void bubble_sort(int[], int);
 void insert_sort(int colecao[], int tamanho);
 void chama_merge(int colecao[]);
-void merge(int[], int, int, int *, int *);
-void intercala(int[], int, int, int, int *, int *);
-void quicksort(int x[], int lb, int ub);
-void partition(int x[], int lb, int ub, int *j);
+void merge(int[], int, int, long long int c_t[]);
+void intercala(int[], int, int, int, long long int c_t[]);
+void quicksort(int x[], int lb, int ub, long long int c_t[]);
+void partition(int x[], int lb, int ub, int *j, long long int c_t[]);
 void chama_quick(int colecao[]);
 
 
@@ -192,78 +192,85 @@ void insert_sort(int colecao[], int tamanho){
 void chama_merge(int colecao[]){
 	int copia[MAX];
 	copia_vetor(colecao, copia);
-	int compara = 0, troca = 0;
+	//int compara = 0, troca = 0;
+	long long int c_t[2];
+	c_t[0] = 0;
+	c_t[1] = 0;
 
 	double time_spent = 0.0;
     clock_t begin = clock();
-	merge(copia, 0, MAX-1, &compara, &troca);
+	merge(copia, 0, MAX-1, c_t);
 	clock_t end = clock();
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
 
 	printf("\n**Merge Sort**");
-    printf("\nComparacoes: %d", compara);
-    printf("\nTrocas: %d", troca);
+    printf("\nComparacoes: %ld", c_t[0]);
+    printf("\nTrocas: %ld", c_t[1]);
     printf("\nTempo: %f segundos\n\n", time_spent);
 	
 }
 
-void merge(int colecao[], int inicio, int fim, int * compara, int * troca){
+void merge(int colecao[], int inicio, int fim, long long int c_t[]){
 	int meio;
 	if(inicio < fim){
 		meio = (inicio + fim) / 2;
-		merge(colecao, inicio, meio, compara, troca);
-		merge(colecao, meio+1, fim, compara, troca);
-		intercala(colecao, inicio, fim, meio, compara, troca);
+		merge(colecao, inicio, meio, c_t);
+		merge(colecao, meio+1, fim, c_t);	
+		intercala(colecao, inicio, fim, meio, c_t);
 	}
 }
 
-void intercala(int colecao[], int inicio, int fim, int meio, int * compara, int * troca){
+void intercala(int colecao[], int inicio, int fim, int meio, long long int c_t[]){
 	int pos_livre, inicio_arquivo1, inicio_arquivo2, i;
 	int arquivo_aux[MAX];
 	inicio_arquivo1 = inicio;
 	inicio_arquivo2 = meio + 1;
 	pos_livre = inicio;
 	while(inicio_arquivo1 <= meio && inicio_arquivo2 <= fim){
+		c_t[0]++;
 		if(colecao[inicio_arquivo1] <= colecao[inicio_arquivo2]){
 			arquivo_aux[pos_livre] = colecao[inicio_arquivo1];
 			inicio_arquivo1 += 1;
+		    //c_t[1]++;
 		} 
 		else
 		{
 			arquivo_aux[pos_livre] = colecao[inicio_arquivo2];
 			inicio_arquivo2 += 1;
+			//c_t[1]++;
+			
 		}
-		compara++;
 		pos_livre += 1;
 	}
 	for(i=inicio_arquivo1; i<= meio; i++, pos_livre++){
 		arquivo_aux[pos_livre] = colecao[i];
-		troca++;
+		c_t[1]++;
+		//c_t[0]++;
 	}
 	for(i=inicio_arquivo2; i<= fim; i++, pos_livre++){
 		arquivo_aux[pos_livre] = colecao[i];
-		troca++;
+		c_t[1]++;
+		//c_t[0]++;
 	}
 	for(i=inicio; i <= fim; i++){
 		colecao[i] = arquivo_aux[i];
-		troca++;
+		c_t[1]++;
 	}
 }
 
-void quicksort(int x[], int lb, int ub){
-
+void quicksort(int x[], int lb, int ub, long long int c_t[]){
     int j = -1;
 
     if(lb >= ub)
         return;
 
-    partition(x, lb, ub, &j);
-    quicksort(x, lb, j-1);
-    quicksort(x, j+1, ub);
+    partition(x, lb, ub, &j, c_t);
+    quicksort(x, lb, j-1, c_t);
+    quicksort(x, j+1, ub, c_t);
 
 }
 
-void partition(int x[], int lb, int ub, int *j){
+void partition(int x[], int lb, int ub, int *j, long long int c_t[]){
 
     int a, down, up, temp;
 
@@ -273,36 +280,43 @@ void partition(int x[], int lb, int ub, int *j){
     down = lb;
 
     while(down < up){
+		c_t[0]++;
         while(x[down] <= a && down < ub){
             down++;
+			c_t[0]++;
         }
         while(x[up] > a){
             up--;
+			c_t[0]++;
         }
         if(down < up){
             temp = x[down];
             x[down] = x[up];
             x[up] = temp;
+			c_t[1]++;
         }
     }
     x[lb] = x[up];
     x[up] = a;
     *j = up;
 }
-	
+
 void chama_quick(int colecao[]){
 	int copia[MAX];
 	copia_vetor(colecao, copia);
+	long long int c_t[2];
+	c_t[0] = 0;
+	c_t[1] = 0;
 
 	double time_spent = 0.0;
     clock_t begin = clock();
-	quicksort(colecao, 0, MAX-1);
+	quicksort(colecao, 0, MAX-1, c_t);
 	clock_t end = clock();
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
 
 	printf("\n**Quick Sort**");
-    //printf("\nComparacoes: %d", compara);
-    //printf("\nTrocas: %d", troca);
+    printf("\nComparacoes: %lld", c_t[0]);
+    printf("\nTrocas: %lld", c_t[1]);
     printf("\nTempo: %f segundos\n\n", time_spent);
 
 
