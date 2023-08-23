@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-#define MAX 1000
+#define MAX 1000000
 #define TRUE 1
 #define FALSE 0
 
