@@ -14,10 +14,10 @@ void selection_sort(int[], int);
 void bubble_sort(int[], int);
 void insert_sort(int colecao[], int tamanho);
 void chama_merge(int colecao[]);
-void merge(int[], int, int, long long int c_t[]);
-void intercala(int[], int, int, int, long long int c_t[]);
-void quicksort(int x[], int lb, int ub, long long int c_t[]);
-void partition(int x[], int lb, int ub, int *j, long long int c_t[]);
+void merge(int[], int, int, long int c_t[]);
+void intercala(int[], int, int, int, long int c_t[]);
+void quicksort(int x[], int lb, int ub, long int c_t[]);
+void partition(int x[], int lb, int ub, int *j, long int c_t[]);
 void chama_quick(int colecao[]);
 
 
@@ -196,7 +196,7 @@ void chama_merge(int colecao[]){
 	int copia[MAX];
 	copia_vetor(colecao, copia);
 	//int compara = 0, troca = 0;
-	long long int c_t[2];
+	long int c_t[2];
 	c_t[0] = 0;
 	c_t[1] = 0;
 
@@ -213,7 +213,7 @@ void chama_merge(int colecao[]){
 	
 }
 
-void merge(int colecao[], int inicio, int fim, long long int c_t[]){
+void merge(int colecao[], int inicio, int fim, long int c_t[]){
 	int meio;
 	if(inicio < fim){
 		meio = (inicio + fim) / 2;
@@ -223,7 +223,7 @@ void merge(int colecao[], int inicio, int fim, long long int c_t[]){
 	}
 }
 
-void intercala(int colecao[], int inicio, int fim, int meio, long long int c_t[]){
+void intercala(int colecao[], int inicio, int fim, int meio, long int c_t[]){
 	int pos_livre, inicio_arquivo1, inicio_arquivo2, i;
 	int arquivo_aux[MAX];
 	inicio_arquivo1 = inicio;
@@ -261,7 +261,7 @@ void intercala(int colecao[], int inicio, int fim, int meio, long long int c_t[]
 	}
 }
 
-void quicksort(int x[], int lb, int ub, long long int c_t[]){
+void quicksort(int x[], int lb, int ub, long int c_t[]){
     int j = -1;
 
     if(lb >= ub)
@@ -273,7 +273,7 @@ void quicksort(int x[], int lb, int ub, long long int c_t[]){
 
 }
 
-void partition(int x[], int lb, int ub, int *j, long long int c_t[]){
+void partition(int x[], int lb, int ub, int *j, long int c_t[]){
 
     int a, down, up, temp;
 
@@ -310,7 +310,7 @@ void partition(int x[], int lb, int ub, int *j, long long int c_t[]){
 void chama_quick(int colecao[]){
 	int copia[MAX];
 	copia_vetor(colecao, copia);
-	long long int c_t[2];
+	long int c_t[2];
 	c_t[0] = 0;
 	c_t[1] = 0;
 
@@ -321,8 +321,8 @@ void chama_quick(int colecao[]){
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
 
 	printf("\n**Quick Sort**");
-    printf("\nComparacoes: %lld", c_t[0]);
-    printf("\nTrocas: %lld", c_t[1]);
+    printf("\nComparacoes: %ld", c_t[0]);
+    printf("\nTrocas: %ld", c_t[1]);
     printf("\nTempo: %f segundos\n\n", time_spent);
 
 
