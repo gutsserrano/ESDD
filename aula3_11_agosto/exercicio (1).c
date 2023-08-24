@@ -21,17 +21,20 @@ void partition(int x[], int lb, int ub, int *j, long long int c_t[]);
 void chama_quick(int colecao[]);
 
 
-int main(/*int argc, char const *argv[]*/){
     int vetor[MAX];
+
+
+int main(/*int argc, char const *argv[]*/){
+    //int vetor[MAX];
 
     carrega_vetor_aleatorio(vetor, MAX, 3);
 	//carrega_vetor_ordenado(vetor, 0, MAX);
 	//carrega_vetor_inverso(vetor, MAX, MAX);
 	//imprime_vetor(vetor, MAX);
 
-    bubble_sort(vetor, MAX);
-    selection_sort(vetor, MAX);
-	insert_sort(vetor, MAX);
+    //bubble_sort(vetor, MAX);
+    //selection_sort(vetor, MAX);
+	//insert_sort(vetor, MAX);
 	chama_merge(vetor);
 	chama_quick(vetor);
 
@@ -274,7 +277,8 @@ void partition(int x[], int lb, int ub, int *j, long long int c_t[]){
 
     int a, down, up, temp;
 
-    a = x[lb];
+   // a = x[lb]a;
+    a = x[(lb + ub) / 2];
 
     up = ub;
     down = lb;
@@ -299,6 +303,8 @@ void partition(int x[], int lb, int ub, int *j, long long int c_t[]){
     x[lb] = x[up];
     x[up] = a;
     *j = up;
+	c_t[1]++;
+
 }
 
 void chama_quick(int colecao[]){
