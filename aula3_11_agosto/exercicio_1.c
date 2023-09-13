@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-#define MAX 1000000
+#define MAX 1000
 #define TRUE 1
 #define FALSE 0  
 
@@ -27,14 +27,14 @@ void chama_quick(int colecao[]);
 int main(/*int argc, char const *argv[]*/){
     //int vetor[MAX];
 
-    carrega_vetor_aleatorio(vetor, MAX, 3);
-	//carrega_vetor_ordenado(vetor, 0, MAX);
+    //carrega_vetor_aleatorio(vetor, MAX, 3);
+	carrega_vetor_ordenado(vetor, 0, MAX);
 	//carrega_vetor_inverso(vetor, MAX, MAX);
 	//imprime_vetor(vetor, MAX);
 
-    //bubble_sort(vetor, MAX);
-    //selection_sort(vetor, MAX);
-	//insert_sort(vetor, MAX);
+    bubble_sort(vetor, MAX);
+    selection_sort(vetor, MAX);
+	insert_sort(vetor, MAX);
 	chama_merge(vetor);
 	chama_quick(vetor);
 
