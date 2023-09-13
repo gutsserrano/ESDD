@@ -6,7 +6,7 @@ struct cadastro_aluno {
     int prontuario;
 };
 
-Aluno criarAluno(/*char *n*/int num, int p){
+Aluno criarAluno(int num, int p){
     Aluno aluno;
 
     aluno = malloc(sizeof(struct cadastro_aluno));
@@ -14,6 +14,8 @@ Aluno criarAluno(/*char *n*/int num, int p){
     //aluno->nome = n;
     aluno->num = num;
     aluno->prontuario = p;
+
+    return aluno;
 }
 
 void destruir(Aluno dado){
