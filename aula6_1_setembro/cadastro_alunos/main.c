@@ -1,4 +1,5 @@
 #include "aluno.h"
+#include "aluno.c"
 
 int main()
 {
